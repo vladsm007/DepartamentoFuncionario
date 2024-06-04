@@ -38,16 +38,25 @@ public class DepartamentoFuncionarioApplication {
 		int n = scanner.nextInt();
 
 		for (int i = 1; i <= n; i++) {
-			System.out.println("Enter contract #" + i + " data: " );
+			System.out.println("Enter contract #" + i + " data: ");
 			System.out.println("Date (DD/MM/YYYY)");
 			Date contractDate = sdf.parse(scanner.next());
 			System.out.print("Value per hour: ");
 			int valuePerHour = scanner.nextInt();
 			System.out.print("Duration (Hours)");
 			int hours = scanner.nextInt();
-			HourContract contract = new HourContract(contractDate,valuePerHour, hours);
+			HourContract contract = new HourContract(contractDate, valuePerHour, hours);
 			worker.addContract(contract);
 		}
+
+			System.out.println("Enter month and year to calculate income (MM/YYYY");
+			String monthAndYear= scanner.next();
+			int month = Integer.parseInt(monthAndYear.substring(0, 2));
+			int year = Integer.parseInt(monthAndYear.substring(3));
+		System.out.println("Name " + worker.getName());
+		System.out.printf("Department " + worker.getDepartment().getName());
+		System.out.println("Infome for " + monthAndYear + ": " + String.format("%.2f" + worker.income(year, month)));
+
 
 		scanner.close();
 	}
